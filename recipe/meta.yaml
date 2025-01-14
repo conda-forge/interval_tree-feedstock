@@ -10,18 +10,20 @@ source:
   sha256: "b259146010157a636e6c774cb114c1c812ceb2d442b03963df7fdabb74b07a9d"
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
 
 requirements:
   host:
     - pip
-    - python >=3
+    - python {{ python_min }}
   run:
-    - python >=3
+    - python >={{ python_min }}
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - interval_tree
 
